@@ -10,6 +10,7 @@ const productosArray = [
 const contenedorProductos = document.querySelector("#contenedor-productos");
 const botonCategorias = document.querySelectorAll("#boton-categorias");
 let botonesAgregar = document.querySelectorAll(".producto-agregar");
+const contadorCarrito = document.querySelector("#contadorCarrito");
 
 function cargarProductos(){ 
         //llamo array
@@ -44,8 +45,23 @@ const productosEnCarrito = [];
 
 function agregarAlCarrito(e){ //agrego elementos al array de productos en carrito
     const idBoton = e.currentTarget.id;
-    const productoAgregado = productosArray.find(producto => producto.id === idBoton);
-    console.log(productoAgregado);
+    const productoAgregado = productosArray.find(producto => producto.id == idBoton); // solo = x2 xq compara valor- si quiero estrictamente igual =x3 cambio el id en el array a un "texto"
+    
+    if(productosEnCarrito.some(producto => producto.id == idBoton)){
+       const index = productosEnCarrito.findIndex(producto => producto.id == idBoton); //busco index del producto
+        productosEnCarrito[index].cantidad++; //suma una cantidad cuando se repite producto
+    } else{
+        productoAgregado.cantidad = 1;
+        productosEnCarrito.push(productoAgregado);
+    }
+
+    actualizarContadorCarrito();
+
+    localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
+
 } 
 
-
+function actualizarContadorCarrito() {
+    let nuevoContadorCarrito = productosEnCarrito.reduce((i, producto) => i + producto.cantidad, 0);
+    contadorCarrito.innerText = nuevoContadorCarrito;
+    }
