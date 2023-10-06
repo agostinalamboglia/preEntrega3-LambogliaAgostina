@@ -31,21 +31,21 @@ function cargarProductos(){
 }
 
 cargarProductos();
-
 /* ___________________ */
 
 botonesAgregar = document.querySelectorAll(".producto-agregar");
 /* console.log(botonesAgregar); */
     
 botonesAgregar.forEach(boton =>{
-    boton.addEventListener("click", agregarAlCarrito);
+    boton.addEventListener("click", (e) => agregarAlCarrito(e));
 });
     
 const productosEnCarrito = [];
 
 function agregarAlCarrito(e){ //agrego elementos al array de productos en carrito
-    const id = e.currentTarget.id;
-    console.log(id);
+    const idBoton = e.currentTarget.id;
+    const productoAgregado = productosArray.find(producto => producto.id === idBoton);
+    console.log(productoAgregado);
 } 
 
-agregarAlCarrito();
+
