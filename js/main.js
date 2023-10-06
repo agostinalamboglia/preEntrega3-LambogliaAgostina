@@ -8,12 +8,11 @@ const productosArray = [
 
 //aca pongo lo que llamo del dom
 const contenedorProductos = document.querySelector("#contenedor-productos");
-let botonesAgregar = document.querySelectorAll(".producto-agregar"); // defino y llamo todos los botones agregar
-const botonCarrito = document.querySelectorAll("#boton-categorias");
+const botonCategorias = document.querySelectorAll("#boton-categorias");
 
 function cargarProductos(){ 
-    //llamo array
-    productosArray.forEach(producto => {
+        //llamo array
+        productosArray.forEach(producto => {
         /* console.log(producto.titulo);  */
         const div = document.createElement("div"); //div contenedor de c/producto
         div.classList.add("producto"); // pongo class al div
@@ -28,24 +27,11 @@ function cargarProductos(){
         /* console.log(contenedorProductos); */
         contenedorProductos.append(div);
     });
-
-    actualizarBotonesAgregar();
-    /* console.log(botonesAgregar); */
 }
 
 cargarProductos();
 
-
-
-function actualizarBotonesAgregar(){
-    botonesAgregar = document.querySelectorAll(".producto-agregar"); // traigo botones del dom
-
-    botonesAgregar.forEach(boton => {
-        boton.addEventListener("click", agregarAlCarrito);
-    });
-}
-
-const productosEnCarrito = [];
+/* const productosEnCarrito = [];
 
 function agregarAlCarrito(e){ //agrega elementos al array de prod en carrito
     const id = e.currentTarget.id;
@@ -53,3 +39,4 @@ function agregarAlCarrito(e){ //agrega elementos al array de prod en carrito
 } 
 
 agregarAlCarrito();
+ */
